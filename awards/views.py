@@ -5,3 +5,6 @@ import datetime as dt
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
+def awards(request):
+    date = dt.date.today()
+    return render(request, 'all-awards/awards.html', {"date": date,})
