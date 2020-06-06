@@ -1,6 +1,30 @@
 {%extends 'all-awards/base.html'%}
 
 {% block content %}
-<h2>Attention! I need awards.....</h2>
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+        {% for projects_item in projects %}
+
+            <div class="col-md-6">
+                <div class="card" style="color: white;">
+                    <div class="card-header">
+                        
+                        <img src="{{projects_item.project_pic.url}}" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="card-body">
+                        <h2 class="text-center" style="font-weight: bold;font-size: 40px;">{{projects_item.title}}</h2>
+                        <br>
+                        <h4>{{projects_item.description}}</h4>
+                        <br>
+                        <a href="{{projects_item.link}}" class="btn btn-info" style="font-weight: 900;">View Site</a>
+                        <a href="" class="btn btn-info" style="margin-left: 70px;font-weight: 900;">Rate</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
 {{block.super}}
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.db import models
+import datetime as dt
 
 # Create your models here.
 class Project(models.Model):
@@ -19,6 +20,11 @@ class Project(models.Model):
     
     def delete_project(self):
         self.delete()
+    
+    @classmethod
+    def get_projects(cls):
+        projects = cls.objects.all()
+        return projects
 
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'profiles/', default=" ")

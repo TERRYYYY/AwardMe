@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Profile,Project,Reviews
+import datetime as dt
 
 # Create your tests here.
 # class ProfileTestCase(TestCase):
@@ -30,6 +31,11 @@ class ProjectTestCase(TestCase):
         self.project_test.save_project()
         projects = Project.objects.all()
         self.assertTrue(len(projects) > 0)
+
+    def tearDown(self):
+        Project.objects.all().delete()
+        Profile.objects.all().delete()
+        Reviews.objects.all().delete()
 
     # def test_delete_project(self):
     #     self.project_test.delete_project(self.project_test.id)
