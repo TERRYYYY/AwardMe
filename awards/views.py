@@ -11,3 +11,16 @@ def awards(request):
     projects = Project.get_projects()
     
     return render(request, 'all-awards/awards.html', {"date": date, "projects":projects})
+
+def search_results(request):
+
+    if 'awards' in request.GET and request.GET["awards"]:
+        search_term = request.GET.get("awards")
+        searched_awards = Project.search_by_title(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'all-awards/search.html',{"message":message,"projects": searched_awards})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'all-awards/search.html',{"message":message})

@@ -1,0 +1,40 @@
+{%extends 'all-awards/base.html'%}
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        {% if projects%}
+        <h2>Found {{ projects|length }} of searched term {{message}}</h2>
+        <br>
+        {% else %}
+        <h2> Found 0 projects for the search term {{message}}</h2>
+        {% endif %}
+        
+        </div>
+        
+        <div class="row">
+        
+            {% if projects %}
+            {% for projects_item in projects %}
+            
+            <div class="col-md-6">
+                <div class="card" style="color: white;">
+                    <div class="card-header">
+            
+                        <img src="{{projects_item.project_pic.url}}" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="card-body">
+                        <h2 class="text-center" style="font-weight: bold;font-size: 40px;">{{projects_item.title}}</h2>
+                        <br>
+                        <h4>{{projects_item.description}}</h4>
+                        <br>
+                        <a href="{{projects_item.link}}" class="btn btn-info" style="font-weight: 900;">View Site</a>
+                        <a href="" class="btn btn-info" style="margin-left: 70px;font-weight: 900;">Rate</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
