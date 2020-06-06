@@ -16,6 +16,9 @@ class Project(models.Model):
 
     def save_project(self):
         self.save()
+    
+    def delete_project(self):
+        self.delete()
 
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'profiles/', default=" ")
@@ -48,3 +51,9 @@ class Reviews(models.Model):
 
     def save_review(self):
         self.save()
+    
+    def update_review(self, design, content, usability,average):
+        self.design = design
+        self.usability = usability
+        self.content = content
+        self.average = average
