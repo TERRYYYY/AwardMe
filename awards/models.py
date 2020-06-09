@@ -1,14 +1,16 @@
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 # Create your models here.
 class Project(models.Model):
     title = models.CharField(max_length = 255)
-    description = models.TextField()
+    description = HTMLField()
     link = models.URLField(max_length=255)
     project_pic = models.ImageField(upload_to = 'projects/', default="title")
     pub_date = models.DateTimeField(auto_now_add=True)
+    
 
     def __str__(self):
         return self.title
@@ -34,6 +36,10 @@ class Project(models.Model):
     def get_single_project(cls, project_id):
         single_project = Project.objects.get(id=project_id)
         return single_project
+    @classmethod
+    def get_by_user(cls, user):
+        projects = cls.objects.filter(user=user)
+        return projects
 
 
 class Profile(models.Model):
@@ -42,6 +48,8 @@ class Profile(models.Model):
     contact = models.CharField(max_length=255, unique=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     project = models.ForeignKey('Project', on_delete=models.CASCADE)
+    
+    
 
     def __str__(self):
         return self.contact

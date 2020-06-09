@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,Http404
 import datetime as dt
 from .models import Profile,Project,Reviews
-from .forms import NewsLetterForm
+from .forms import NewsLetterForm,ProfileForm,ProjectForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
@@ -28,5 +28,19 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'all-awards/search.html',{"message":message})
+
+@login_required(login_url='/accounts/login/')  
+def new_post(request):
+    current_user = request.user
+    if request.method=='POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.profile = current_user.profile
+            project.save()
+            return redirect('awards')
+    else:
+        form = ProjectForm()
+    return render(request, 'all-awards/newpost.html',{"form":form})
 
 
