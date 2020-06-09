@@ -4,6 +4,7 @@ import datetime as dt
 from .models import Profile,Project,Reviews
 from .forms import NewsLetterForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -14,6 +15,7 @@ def awards(request):
     
     return render(request, 'all-awards/awards.html', {"date": date, "projects":projects})
 
+@login_required(login_url='/accounts/login/')
 def search_results(request):
 
     if 'awards' in request.GET and request.GET["awards"]:
