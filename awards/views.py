@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from django.http  import HttpResponse
+from django.http import HttpResponse,Http404
 import datetime as dt
 from .models import Profile,Project,Reviews
+from .forms import NewsLetterForm
+from django.http import HttpResponse, Http404,HttpResponseRedirect
 
 # Create your views here.
 def index(request):
@@ -24,3 +26,5 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'all-awards/search.html',{"message":message})
+
+

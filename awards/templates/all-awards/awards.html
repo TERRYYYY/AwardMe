@@ -1,4 +1,5 @@
 {%extends 'all-awards/base.html'%}
+{% load bootstrap3 %}
 
 {% block content %}
 <div class="container">
@@ -12,17 +13,22 @@
                         
                         <img src="{{projects_item.project_pic.url}}" class="img-responsive" alt="Image">
                     </div>
+                    
                     <div class="card-body">
+                        <!-- <a class="aw-bold-text truncate" href="/site/{{project.id}}">{{project.title}}</a> -->
                         <h2 class="text-center" style="font-weight: bold;font-size: 40px;">{{projects_item.title}}</h2>
                         <br>
                         <h4>{{projects_item.description}}</h4>
-                        <br>
                         <a href="{{projects_item.link}}" class="btn btn-info" style="font-weight: 900;">View Site</a>
-                        <a href="" class="btn btn-info" style="margin-left: 70px;font-weight: 900;">Rate</a>
-                    </div>
+                        <a href="" class="btn btn-info">Rate</a>
+                        
+                        
+        {% endfor %}
+
+                    
                 </div>
             </div>
-        {% endfor %}
+        
         </div>
     </div>
 </div>

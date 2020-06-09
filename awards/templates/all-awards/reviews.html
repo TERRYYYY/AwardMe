@@ -1,0 +1,20 @@
+{%extends 'all-awards/base.html'%}
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        
+        <div class="row">
+            <div class="col">
+                <img src="{{project.project_pic.url}}" alt="" class="img-fluid">
+            </div>
+            <div class="col">
+                <h1>{{project.title}}</h1>
+                <p>{{project.description}}</p>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -29,6 +29,11 @@ class Project(models.Model):
     def search_by_title(cls,search_term):
         projects = cls.objects.filter(title__icontains=search_term)
         return projects
+    @classmethod
+    def get_single_project(cls, project_id):
+        single_project = Project.objects.get(id=project_id)
+        return single_project
+
 
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'profiles/', default=" ")
@@ -61,9 +66,18 @@ class Reviews(models.Model):
 
     def save_review(self):
         self.save()
+
+    @classmethod
+    def get_reviews(cls):
+        reviews = cls.objects.all()
+        return reviews
     
     def update_review(self, design, content, usability,average):
         self.design = design
         self.usability = usability
         self.content = content
         self.average = average
+
+class NewsLetterRecipients(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()
