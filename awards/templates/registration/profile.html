@@ -1,0 +1,38 @@
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <br>
+        <br>
+        <div class="col l4 m4 s12"></div>
+        <div class="col l4 m4 s12">
+            {{form.errors}}
+            <form action="/account/profile" method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <h1 style="font-size: 35px;font-weight: 900;" class="text-center">Enter your Details</h1>
+                <hr>
+                <div class="file-field input-field">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="text" class="form-control"  placeholder="Enter your username">
+                    <div class="btn-small" style="width:30%;margin-top: 70px;">
+                        <span>File</span>
+                        <input type="file" name="photo">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload profile photo">
+                    </div>
+                </div>
+                <label for="textarea1" style="margin-top: 70px;">Bio</label>
+                <textarea id="textarea1" class="form-control" name="bio" placeholder="Tell us something about you" required></textarea>
+                {{form.website_url.label}}<br>
+                {{form.website_url}}
+
+                <br>
+                <input type="submit" class="btn right" value="FINISH" style="background-color: #49c5b6;width:100%"></a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

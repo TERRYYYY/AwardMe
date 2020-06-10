@@ -1,0 +1,41 @@
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="">
+    <a class="right" href="/accounts/logout">Logout</a>
+</div>
+<div class="container center-align">
+    <br><br>
+    <img src="{{user.profile_pic.url}}" class="circle" width="70px" height="70px">
+    <p class="aw-bold-text">{{user.username}}<a href="{{user.profile.website_url}}" class="black-text" target="blank"><i
+                class="material-icons">subdirectory_arrow_right</i></a></p>
+    <p class="black-text">{{user.profile.country}}</p>
+    <p>{{user.profile.bio}}</p>
+</div>
+<hr>
+<div class="row">
+    <div class="col l1 m1 s12"></div>
+    <div class="col l10 m10 s12">
+        <span class="black-text aw-bold-text">{{projects | length}} Projects</span>
+        <br><br />
+        {% for project in projects%}
+        <div class="col l3 m6 s12">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{project.backdrop_image.url}}">
+                </div>
+                <div class="card-content">
+                    <a class="aw-bold-text truncate" href="/site/{{project.id}}">{{project.title}}</a>
+                    <p class="truncate">{{project.description}}</p>
+                </div>
+                <div class="card-action">
+                    <span>BY <a href="/profile/{{project.user.username}}"
+                            class="black-text aw-bold-text">{{project.user.username}}</a></span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

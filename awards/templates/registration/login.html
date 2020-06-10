@@ -20,8 +20,10 @@
                         {% csrf_token %}
                         {% bootstrap_form form%}
 
+                        <a href="/accounts/register">Don't have an account? Register here! </a>
+
                         <div class="form-group">
-                            <input type="submit" class="btn btn-info" value="Login" style="margin-left: 200px; font-weight: 900;">
+                            <input type="submit" class="btn btn-info" value="Login" style="margin-left: 200px; font-weight: 900;margin-top: 20px;">
                         </div>
 
                         <input type="hidden" name="next" value="{{next}}">

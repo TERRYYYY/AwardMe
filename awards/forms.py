@@ -12,7 +12,7 @@ class ProfileForm(forms.ModelForm):
     '''
     class Meta:
         model = Profile
-        exlcude = ['']
+        exlcude = ['user']
         fields = ('bio', 'profile_pic','contact')
 
 class ProjectForm(forms.ModelForm):
@@ -23,3 +23,10 @@ class ProjectForm(forms.ModelForm):
         model = Project
         exclude = [ 'pub_date']
         fields = ('title','description', 'project_pic','link')
+        
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user']
+        fields = ('bio', 'profile_pic','contact')
+        
