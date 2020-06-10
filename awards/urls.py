@@ -9,6 +9,8 @@ urlpatterns=[
     url(r'^new/project$', views.new_post, name='new_post'),
     url(r'^accounts/profile/$', views.user_profile, name='profile'),
     url(r'^myaccount/', views.account, name='account'),
+    url(r'^api/project/$', views.ProjectList.as_view()),
+    url(r'^api/project/$', views.ProfileList.as_view()),
     # url(r'^review/',views.review,name ='review'),
 ]
 if settings.DEBUG:
