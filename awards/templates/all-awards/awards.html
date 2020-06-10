@@ -7,23 +7,28 @@
         <div class="row">
         {% for projects_item in projects %}
 
-            <div class="col-md-6">
-                <div class="card" style="color: white;">
+            
+                <div class="card" style="color: white;margin-top: 30px;">
                     <div class="card-header">
-                        
-                        <img src="{{projects_item.project_pic.url}}" class="img-responsive" alt="Image">
+                        <img src="{{projects_item.project_pic.url}}" class="img-responsive" alt="Image" height="700px" width="700px">
                     </div>
                     
                     <div class="card-body">
                         <!-- <a class="aw-bold-text truncate" href="/site/{{project.id}}">{{project.title}}</a> -->
-                        <h2 class="text-center" style="font-weight: bold;font-size: 40px;">{{projects_item.title}}</h2>
+                        <h2 style="font-weight: bold;font-size: 40px;">{{projects_item.title}}</h2>
                         <br>
                         <h4>{{projects_item.description}}</h4>
-                        <a href="{{projects_item.link}}" class="btn btn-info" style="font-weight: 900;">View Site</a>
-                        <a href="" class="btn btn-info">Rate</a>
-                        
+                       
+                        <a href="{{projects_item.link}}" class="btn btn-info" style="font-weight: 900;margin-left: 50px;">View Site</a>
+                        <a href="" class="btn btn-info" style="margin-left: 50px;">Rate</a>
+                       
+                    </div> 
+                    </div>
+                </div>
+                
                         
         {% endfor %}
+                
 
                     
                 </div>

@@ -9,6 +9,7 @@ class Project(models.Model):
     description = HTMLField()
     link = models.URLField(max_length=255)
     project_pic = models.ImageField(upload_to = 'projects/', default="title")
+    pub_date = models.DateTimeField(auto_now_add=True)
     
 
     def __str__(self):

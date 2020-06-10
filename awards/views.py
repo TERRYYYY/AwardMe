@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProjectSerializer,ProfileSerializer
+from rest_framework import status
 
 # Create your views here.
 def index(request):
@@ -34,12 +35,10 @@ def search_results(request):
 
 @login_required(login_url='/accounts/login/')  
 def new_post(request):
-    current_user = request.user
     if request.method=='POST':
         form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
             project = form.save(commit=False)
-            project.profile = current_user.profile
             project.save()
             return redirect('awards')
     else:
