@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 import datetime as dt
 from .models import Profile,Project,Reviews
-from .forms import NewsLetterForm,ProfileForm,ProjectForm,ProfileUpdateForm
+from .forms import NewsLetterForm,ProfileForm,ProjectForm,ProfileUpdateForm,RateProjectForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
@@ -12,12 +12,16 @@ from rest_framework import status
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
-def awards(request):
     date = dt.date.today()
     projects = Project.get_projects()
-    
-    return render(request, 'all-awards/awards.html', {"date": date, "projects":projects})
+    reviews = Reviews.get_reviews()
+    return render(request, 'all-awards/index.html', {"date": date, "projects":projects, "reviews":reviews})
+
+def my_review(request):
+    date = dt.date.today()
+    projects = Project.get_projects()
+    reviews = Reviews.get_reviews()
+    return render(request, 'all-awards/reviews.html', {"date": date, "projects":projects, "reviews":reviews})
 
 @login_required(login_url='/accounts/login/')
 def search_results(request):
@@ -83,6 +87,45 @@ def account(request):
             'user': current_user,
             'projects': user_projects
             })
+@login_required(login_url='/accounts/login/') 
+def review(request, id):
+
+    try:
+        project = Project.objects.get(pk = id)
+
+    except DoesNotExist:
+        raise Http404()
+
+    comments = Reviews.get_comment(Reviews, id)
+    latest_review_list=Reviews.objects.all()
+
+    if request.method == 'POST':
+        form = RateProjectForm(request.POST)
+        if form.is_valid():
+            design_rating = form.cleaned_data['design_rating']
+            content_rating = form.cleaned_data['content_rating']
+            usability_rating = form.cleaned_data['usability_rating']
+            comment = form.cleaned_data['comment']
+            review = Reviews()
+            review.project = project
+            
+            review.comment = comment
+            review.design_rating = design_rating
+            review.content_rating = content_rating
+            review.usability_rating = usability_rating
+            review.save()
+
+    else:
+        form = RateProjectForm()
+
+        # return HttpResponseRedirect(reverse('image', args=(image.id,)))
+
+    return render(request, 'all-awards/reviews.html', {"project": project,
+                                          'form':form,
+                                          'comments':comments,
+                                          'latest_review_list':latest_review_list})
+    
+        
 
 class ProjectList(APIView):
 

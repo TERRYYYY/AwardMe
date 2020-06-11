@@ -29,4 +29,10 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         exclude = ['user']
         fields = ('bio', 'profile_pic','contact')
+
+class RateProjectForm(forms.ModelForm):
+    class Meta:
+        model = Reviews
+        exclude = [' ']
+        fields=('design','usability','content', 'average')
         

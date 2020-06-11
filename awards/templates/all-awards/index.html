@@ -1,0 +1,82 @@
+{%extends 'all-awards/base.html'%}
+
+{% load bootstrap3 %}
+{% load static%}
+{% block content %}
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            {% for projects_item in projects %}
+
+
+            <div class="card" style="color: white;margin-top: 30px;">
+                <div class="card-header">
+                    <img src="{{projects_item.project_pic.url}}" class="img-responsive" alt="Image" height="700px"
+                        width="700px">
+                </div>
+
+                <div class="card-body">
+                    <!-- <a class="aw-bold-text truncate" href="/site/{{project.id}}">{{project.title}}</a> -->
+                    <h2 style="font-weight: bold;font-size: 40px;">{{projects_item.title}}</h2>
+                    <br>
+                    <h4>{{projects_item.description}}</h4>
+
+                    <a href="{{projects_item.link}}" class="btn btn-info"
+                        style="font-weight: 900;margin-left: 50px;">View Site</a>
+                    
+                   <a href="" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Rate</a>
+                    
+
+                </div>
+
+            </div>
+        </div>
+
+
+        {% endfor %}
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;font-size: 35px;font-weight: bold;">VOTING !</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="range-field">
+                            <label for="des-score">Design Score</label>
+                            <input type="range" id="des-score" min="0" max="10" name="design_score" />
+                        </p>
+                        <p class="range-field">
+                            <label for="usb-score">Usability Score</label>
+                            <input type="range" id="usb-score" min="0" max="10" name="usability_score" />
+                        </p>
+                        <p class="range-field">
+                            <label for="cont-score">Content Score</label>
+                            <input type="range" id="cont-score" min="0" max="10" name="content_score" />
+                        </p>
+                        <input type="submit" value="vote" class="btn btn-light" data-dismiss="modal" style="background-color: #49c5b6;margin-left: 250px;">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+{{block.super}}
+{% endblock %}

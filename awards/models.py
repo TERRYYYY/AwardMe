@@ -85,6 +85,10 @@ class Reviews(models.Model):
         reviews = cls.objects.all()
         return reviews
     
+    def get_comment(self, id):
+        comments = Review.objects.filter(image_id =id)
+        return comments
+    
     def update_review(self, design, content, usability,average):
         self.design = design
         self.usability = usability
