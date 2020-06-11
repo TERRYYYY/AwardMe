@@ -6,7 +6,7 @@ An app where users can post their work/projects and other users get to rate/revi
 - Inspired by [Awwwards](https://www.awwwards.com/)
 
 ### Live link
-Click on the [link] to access my website.
+Click on the [link](https://awardmebyterry.herokuapp.com/) to access my website.
 
 ### Setup/Installation Requirements
 - Github and Heroku account - from where the application can be cloned or downloaded
