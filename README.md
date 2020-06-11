@@ -25,7 +25,7 @@ A user is able to:
 
 ### API Endpoints
 
-[Projects API](http://127.0.0.1:8000/api/project/)
+[Projects API](https://awardmebyterry.herokuapp.com/api/project/)
 
 ### Known Bugs
 No known bugs
