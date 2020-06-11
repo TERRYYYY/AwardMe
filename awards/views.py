@@ -23,6 +23,7 @@ def my_review(request):
     reviews = Reviews.get_reviews()
     return render(request, 'all-awards/reviews.html', {"date": date, "projects":projects, "reviews":reviews})
 
+
 @login_required(login_url='/accounts/login/')
 def search_results(request):
 
